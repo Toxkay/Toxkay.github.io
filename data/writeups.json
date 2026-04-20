@@ -1,47 +1,20 @@
 [
   {
-    "title": "HackTheBox — Busqueda: Full Walkthrough & Git Credential Abuse",
-    "url": "https://medium.com/@toxkay/htb-busqueda-walkthrough",
-    "date": "2024-03-15",
+    "title": "PortSwigger — 2FA Simple Bypass",
+    "url": "https://medium.com/@karenfady5576/portswigger-2fa-simple-bypass-2b440bc645be",
+    "date": "2025-03-08",
     "platform": "Medium",
-    "readTime": "12 min read",
-    "summary": "Complete walkthrough of HackTheBox Busqueda. Covers exploiting a SSTI vulnerability in Searchor, pivoting via Git credentials leaked in a config file, and escalating to root by abusing a sudoers entry for a Gitea admin script.",
-    "tags": ["HackTheBox", "SSTI", "Git", "Privilege Escalation"]
+    "readTime": "2 min read",
+    "summary": "Explanation of how I bypassed 2FA in a PortSwigger lab without relying on ending the flow at /my-account, ultimately gaining access.",
+    "tags": ["Web", "2FA Bypass", "PortSwigger", "Bug Bounty"]
   },
   {
-    "title": "Active Directory Attack Path: From Domain User to Domain Admin in 20 Minutes",
-    "url": "https://medium.com/@toxkay/ad-attack-path-domain-admin",
-    "date": "2024-02-08",
+    "title": "HTB — Flag Command (Web)",
+    "url": "https://medium.com/@karenfady5576/htb-flag-command-web-c77af5a8558c",
+    "date": "2026-04-17",
     "platform": "Medium",
-    "readTime": "18 min read",
-    "summary": "Step-by-step breakdown of an AD attack chain discovered during an internal engagement: AS-REP Roasting → Kerberoasting → Pass-the-Hash → DCSync. All tooling is explained and detection bypasses are noted.",
-    "tags": ["Active Directory", "Kerberos", "DCSync", "Red Team"]
-  },
-  {
-    "title": "Bypassing WAFs with HTTP Request Smuggling — A Practical Guide",
-    "url": "https://medium.com/@toxkay/waf-bypass-http-smuggling",
-    "date": "2024-01-20",
-    "platform": "Medium",
-    "readTime": "15 min read",
-    "summary": "Practical guide to exploiting HTTP/1.1 desync vulnerabilities to bypass WAF controls on major CDN providers. Includes automated detection methodology and PoC code.",
-    "tags": ["Web", "WAF Bypass", "HTTP Smuggling", "Bug Bounty"]
-  },
-  {
-    "title": "AMSI Bypass Techniques in 2024 — Still Working (and Why)",
-    "url": "https://medium.com/@toxkay/amsi-bypass-2024",
-    "date": "2023-12-10",
-    "platform": "Medium",
-    "readTime": "10 min read",
-    "summary": "Survey of current AMSI bypass techniques: memory patching, reflection-based bypasses, and PowerShell downgrade attacks. Tested against Windows Defender December 2023 signatures.",
-    "tags": ["Windows", "AMSI", "Evasion", "PowerShell"]
-  },
-  {
-    "title": "SSRF to Internal Cloud Metadata: Bug Bounty Case Study",
-    "url": "https://medium.com/@toxkay/ssrf-cloud-metadata-bug-bounty",
-    "date": "2023-10-05",
-    "platform": "Medium",
-    "readTime": "8 min read",
-    "summary": "How I turned a blind SSRF into IAM credential theft via AWS metadata endpoint. Covers the full discovery-to-report process including filter bypass techniques used.",
-    "tags": ["SSRF", "AWS", "Cloud Security", "Bug Bounty"]
+    "readTime": "2 min read",
+    "summary": "A walkthrough for a very easy web challenge called Flag Command.",
+    "tags": ["Web", "HTB", "Bug Bounty"]
   }
 ]

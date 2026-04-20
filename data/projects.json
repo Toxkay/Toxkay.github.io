@@ -1,56 +1,47 @@
 [
   {
-    "name": "recon-toolkit",
-    "description": "A modular reconnaissance framework that chains nmap, gobuster, and custom scripts to automate initial target enumeration during penetration tests.",
-    "url": "https://github.com/Toxkay/recon-toolkit",
-    "language": "Python",
-    "icon": "🔍",
-    "tags": ["Recon", "Automation", "OSINT"],
-    "stars": 48
+    "name": "Summer-Intern-Final-Project-NETSEC",
+    "description": "Enterprise-grade network security infrastructure designed during NTI training program. Capabilities: Multi-area secure network design, VPNs, Zone-Based Firewalls, ACLs, Routing Protocols (OSPF, RIP). Impact: Implemented defense-in-depth security architecture for multi-site corporate network.",
+    "url": "https://github.com/Toxkay/Summer-Intern-Final-Project-NETSEC",
+    "language": "Network Security",
+    "icon": "🛡️",
+    "tags": ["Security", "Networking", "Cisco", "Hardening"],
+    "stars": 0
   },
   {
-    "name": "ad-enum",
-    "description": "Active Directory enumeration tool built on top of Impacket and BloodHound data. Automates common AD attack paths and generates a prioritised attack report.",
-    "url": "https://github.com/Toxkay/ad-enum",
-    "language": "Python",
-    "icon": "🗂",
-    "tags": ["Active Directory", "BloodHound", "Red Team"],
-    "stars": 31
+    "name": "Vole-Machine",
+    "description": "Custom virtual machine implementation built from scratch in C++. Capabilities: Memory management, custom instruction set, CPU simulation. Challenge: Understanding computer architecture at the hardware-software interface.",
+    "url": "https://github.com/Toxkay/Vole-Machine",
+    "language": "C++",
+    "icon": "💻",
+    "tags": ["Systems", "Virtual Machine", "Architecture", "Low-Level"],
+    "stars": 0
   },
   {
-    "name": "payload-factory",
-    "description": "Collection of obfuscated payload templates for C2 callbacks. Supports Cobalt Strike, Sliver, and custom listeners. Evades common EDR solutions.",
-    "url": "https://github.com/Toxkay/payload-factory",
-    "language": "C",
+    "name": "CS341-A3-CPU-Scheduler",
+    "description": "Multi-algorithm CPU scheduler simulator implementing FCFS, Shortest Job First, Round Robin, and Priority scheduling. Features: Performance benchmarking, Gantt chart visualization, turnaround time analysis.",
+    "url": "https://github.com/Toxkay/CS341-A3-CPU-Scheduler",
+    "language": "Java",
+    "icon": "💻",
+    "tags": ["Operating Systems", "Scheduling", "Simulation", "Algorithms"],
+    "stars": 0
+  },
+  {
+    "name": "CS341-A1-Command-Line-Interpreter",
+    "description": "Unix-like shell interpreter with advanced command parsing and process management. Capabilities: Process control, I/O redirection, pipe implementation, command parsing. Learning: OS process management and IPC.",
+    "url": "https://github.com/Toxkay/CS341-A1-Command-Line-Interpreter",
+    "language": "Java",
+    "icon": "🟢",
+    "tags": ["Systems Programming", "Shell", "POSIX", "Processes"],
+    "stars": 0
+  },
+  {
+    "name": "CS251-Asset-Management-Zakat-Calculation-System",
+    "description": "Full-stack financial management system with Islamic finance (zakat) calculation engine. Features: Asset tracking, automated zakat calculation, multi-user support. Complexity: Business logic with religious compliance requirements.",
+    "url": "https://github.com/Toxkay/CS251-Asset-Management-Zakat-Calculation-System",
+    "language": "Full Stack",
     "icon": "🚀",
-    "tags": ["Evasion", "C2", "Malware Dev"],
-    "stars": 72
-  },
-  {
-    "name": "http-smuggler",
-    "description": "HTTP request smuggling detection and exploitation toolkit. Automates CL.TE, TE.CL, and TE.TE desync attacks against web proxies and CDNs.",
-    "url": "https://github.com/Toxkay/http-smuggler",
-    "language": "Python",
-    "icon": "📦",
-    "tags": ["Web", "HTTP Smuggling", "Proxy"],
-    "stars": 19
-  },
-  {
-    "name": "powershell-arsenal",
-    "description": "Collection of offensive PowerShell scripts for post-exploitation. Includes AMSI bypass techniques, credential dumping helpers, and lateral movement modules.",
-    "url": "https://github.com/Toxkay/powershell-arsenal",
-    "language": "PowerShell",
-    "icon": "⚡",
-    "tags": ["Post-Exploitation", "AMSI", "Windows"],
-    "stars": 55
-  },
-  {
-    "name": "ctf-writeups",
-    "description": "Repository of CTF challenge write-ups covering binary exploitation, reverse engineering, web challenges, and cryptography from HackTheBox, TryHackMe, and various CTF events.",
-    "url": "https://github.com/Toxkay/ctf-writeups",
-    "language": "Python",
-    "icon": "🏴",
-    "tags": ["CTF", "Reversing", "PWN", "Web"],
-    "stars": 23
+    "tags": ["Finance", "Asset Management", "Zakat", "Backend"],
+    "stars": 0
   }
 ]
