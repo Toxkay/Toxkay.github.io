@@ -1,0 +1,56 @@
+[
+  {
+    "name": "recon-toolkit",
+    "description": "A modular reconnaissance framework that chains nmap, gobuster, and custom scripts to automate initial target enumeration during penetration tests.",
+    "url": "https://github.com/Toxkay/recon-toolkit",
+    "language": "Python",
+    "icon": "🔍",
+    "tags": ["Recon", "Automation", "OSINT"],
+    "stars": 48
+  },
+  {
+    "name": "ad-enum",
+    "description": "Active Directory enumeration tool built on top of Impacket and BloodHound data. Automates common AD attack paths and generates a prioritised attack report.",
+    "url": "https://github.com/Toxkay/ad-enum",
+    "language": "Python",
+    "icon": "🗂",
+    "tags": ["Active Directory", "BloodHound", "Red Team"],
+    "stars": 31
+  },
+  {
+    "name": "payload-factory",
+    "description": "Collection of obfuscated payload templates for C2 callbacks. Supports Cobalt Strike, Sliver, and custom listeners. Evades common EDR solutions.",
+    "url": "https://github.com/Toxkay/payload-factory",
+    "language": "C",
+    "icon": "🚀",
+    "tags": ["Evasion", "C2", "Malware Dev"],
+    "stars": 72
+  },
+  {
+    "name": "http-smuggler",
+    "description": "HTTP request smuggling detection and exploitation toolkit. Automates CL.TE, TE.CL, and TE.TE desync attacks against web proxies and CDNs.",
+    "url": "https://github.com/Toxkay/http-smuggler",
+    "language": "Python",
+    "icon": "📦",
+    "tags": ["Web", "HTTP Smuggling", "Proxy"],
+    "stars": 19
+  },
+  {
+    "name": "powershell-arsenal",
+    "description": "Collection of offensive PowerShell scripts for post-exploitation. Includes AMSI bypass techniques, credential dumping helpers, and lateral movement modules.",
+    "url": "https://github.com/Toxkay/powershell-arsenal",
+    "language": "PowerShell",
+    "icon": "⚡",
+    "tags": ["Post-Exploitation", "AMSI", "Windows"],
+    "stars": 55
+  },
+  {
+    "name": "ctf-writeups",
+    "description": "Repository of CTF challenge write-ups covering binary exploitation, reverse engineering, web challenges, and cryptography from HackTheBox, TryHackMe, and various CTF events.",
+    "url": "https://github.com/Toxkay/ctf-writeups",
+    "language": "Python",
+    "icon": "🏴",
+    "tags": ["CTF", "Reversing", "PWN", "Web"],
+    "stars": 23
+  }
+]
