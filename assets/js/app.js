@@ -209,7 +209,21 @@ async function loadNotesIndex() {
 function renderNotesList(notes) {
   const list = $('#notes-list');
   if (!notes.length) {
-    list.innerHTML = '<p class="loading-state" style="color:var(--text-3)">No notes found.</p>';
+    if (allNotes.length) {
+      list.innerHTML = '<p class="loading-state" aria-live="polite">No matching notes. Try a different search.</p>';
+      return;
+    }
+
+    list.innerHTML = `
+      <div class="loading-state" aria-live="polite">
+        <div style="display:flex;align-items:center;gap:.75rem;flex-wrap:wrap">
+          <span class="tag tag-yellow">COMING SOON</span>
+          <span>📝 Notes are getting written.</span>
+        </div>
+        <div style="margin-top:.75rem;color:var(--text-2)">
+          Check back soon — this section will fill up as I publish new writeups and cheat sheets.
+        </div>
+      </div>`;
     return;
   }
 
