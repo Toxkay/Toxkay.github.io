@@ -16,14 +16,5 @@
     "readTime": "2 min read",
     "summary": "A walkthrough for a very easy web challenge called Flag Command.",
     "tags": ["Web", "HTB", "Bug Bounty"]
-  },
-  {
-    "title": "HTB — WingData Machine",
-    "url": "https://medium.com/@karenfady5576/htb-machine-wingdata-fb24e5a37900",
-    "date": "2026-04-21",
-    "platform": "Medium",
-    "readTime": "3 min read",
-    "summary": "A walkthrough for an easy machine called WingData.",
-    "tags": ["Linux", "HTB", "Machines" , "Season 10" , "Privesc"]
   }
 ]
