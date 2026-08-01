@@ -1,14 +1,14 @@
 [
   {
-    "title": "PortSwigger — 2FA Simple Bypass",
-    "url": "https://medium.com/@karenfady5576/portswigger-2fa-simple-bypass-2b440bc645be",
-    "date": "2025-03-08",
+    "title": "Skills Assessment — SQL Injection Fundamentals Writeup",
+    "url": "https://medium.com/@karenfady5576/skills-assessment-sql-injection-fundamentals-writeup-782e856ecbc4",
+    "date": "2026-08-1",
     "platform": "Medium",
-    "readTime": "2 min read",
-    "summary": "Explanation of how I bypassed 2FA in a PortSwigger lab without relying on ending the flow at /my-account, ultimately gaining access.",
-    "tags": ["Web", "2FA Bypass", "PortSwigger", "Bug Bounty"]
-  },
-  {
+    "readTime": "4 min read",
+    "summary": "I finished a module from the CPTS certificate called SQL Injection Fundamentals and it has a skills assessment which was very amusing, this is a writeup for it to help you solve it (The new version of the skills assessment)",
+    "tags": ["Web", "HTB", "CPTS" , "SQL Injection"]
+  }
+  ,{
     "title": "HTB — Flag Command (Web)",
     "url": "https://medium.com/@karenfady5576/htb-flag-command-web-c77af5a8558c",
     "date": "2026-04-17",
@@ -16,5 +16,14 @@
     "readTime": "2 min read",
     "summary": "A walkthrough for a very easy web challenge called Flag Command.",
     "tags": ["Web", "HTB", "Bug Bounty"]
+  },
+  {
+    "title": "PortSwigger — 2FA Simple Bypass",
+    "url": "https://medium.com/@karenfady5576/portswigger-2fa-simple-bypass-2b440bc645be",
+    "date": "2025-03-08",
+    "platform": "Medium",
+    "readTime": "2 min read",
+    "summary": "Explanation of how I bypassed 2FA in a PortSwigger lab without relying on ending the flow at /my-account, ultimately gaining access.",
+    "tags": ["Web", "2FA Bypass", "PortSwigger", "Bug Bounty"]
   }
 ]
