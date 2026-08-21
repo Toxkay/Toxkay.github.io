@@ -14,16 +14,6 @@
     "date": "2026-04-17",
     "platform": "Medium",
     "readTime": "2 min read",
-    "summary": "A walkthrough for a very easy web challenge called Flag Command.",
     "tags": ["Web", "HTB", "Bug Bounty"]
-  },
-  {
-    "title": "PortSwigger — 2FA Simple Bypass",
-    "url": "https://medium.com/@karenfady5576/portswigger-2fa-simple-bypass-2b440bc645be",
-    "date": "2025-03-08",
-    "platform": "Medium",
-    "readTime": "2 min read",
-    "summary": "Explanation of how I bypassed 2FA in a PortSwigger lab without relying on ending the flow at /my-account, ultimately gaining access.",
-    "tags": ["Web", "2FA Bypass", "PortSwigger", "Bug Bounty"]
   }
 ]

@@ -1,4 +1,13 @@
 [
+    {
+    "name": "ReconW — Security Reconnaissance Pipeline Orchestrator",
+    "description": "A comprehensive security reconnaissance pipeline orchestrator designed for automating and streamlining the reconnaissance process in penetration testing and security auditing.",
+    "url": "https://github.com/Toxkay/reconw-orchestrator",
+    "language": "Python, Jinja2",
+    "icon": "🔍",
+    "tags": ["Security", "Reconnaissance", "Automation", "Penetration Testing"],
+    "stars": 2
+  },
   {
     "name": "Summer-Intern-Final-Project-NETSEC",
     "description": "Enterprise-grade network security infrastructure designed during NTI training program. Capabilities: Multi-area secure network design, VPNs, Zone-Based Firewalls, ACLs, Routing Protocols (OSPF, RIP). Impact: Implemented defense-in-depth security architecture for multi-site corporate network.",
