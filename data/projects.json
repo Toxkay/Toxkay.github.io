@@ -1,11 +1,16 @@
 [
-    {
+  {
     "name": "ReconW — Security Reconnaissance Pipeline Orchestrator",
     "description": "A comprehensive security reconnaissance pipeline orchestrator designed for automating and streamlining the reconnaissance process in penetration testing and security auditing.",
     "url": "https://github.com/Toxkay/reconw-orchestrator",
     "language": "Python, Jinja2",
     "icon": "🔍",
-    "tags": ["Security", "Reconnaissance", "Automation", "Penetration Testing"],
+    "tags": [
+      "Security",
+      "Reconnaissance",
+      "Automation",
+      "Penetration Testing"
+    ],
     "stars": 2
   },
   {
@@ -14,7 +19,12 @@
     "url": "https://github.com/Toxkay/Summer-Intern-Final-Project-NETSEC",
     "language": "Network Security",
     "icon": "🛡️",
-    "tags": ["Security", "Networking", "Cisco", "Hardening"],
+    "tags": [
+      "Security",
+      "Networking",
+      "Cisco",
+      "Hardening"
+    ],
     "stars": 0
   },
   {
@@ -23,7 +33,12 @@
     "url": "https://github.com/Toxkay/Vole-Machine",
     "language": "C++",
     "icon": "💻",
-    "tags": ["Systems", "Virtual Machine", "Architecture", "Low-Level"],
+    "tags": [
+      "Systems",
+      "Virtual Machine",
+      "Architecture",
+      "Low-Level"
+    ],
     "stars": 0
   },
   {
@@ -32,7 +47,12 @@
     "url": "https://github.com/Toxkay/CS341-A3-CPU-Scheduler",
     "language": "Java",
     "icon": "💻",
-    "tags": ["Operating Systems", "Scheduling", "Simulation", "Algorithms"],
+    "tags": [
+      "Operating Systems",
+      "Scheduling",
+      "Simulation",
+      "Algorithms"
+    ],
     "stars": 0
   },
   {
@@ -41,7 +61,12 @@
     "url": "https://github.com/Toxkay/CS341-A1-Command-Line-Interpreter",
     "language": "Java",
     "icon": "🟢",
-    "tags": ["Systems Programming", "Shell", "POSIX", "Processes"],
+    "tags": [
+      "Systems Programming",
+      "Shell",
+      "POSIX",
+      "Processes"
+    ],
     "stars": 0
   },
   {
@@ -50,7 +75,12 @@
     "url": "https://github.com/Toxkay/CS251-Asset-Management-Zakat-Calculation-System",
     "language": "Full Stack",
     "icon": "🚀",
-    "tags": ["Finance", "Asset Management", "Zakat", "Backend"],
+    "tags": [
+      "Finance",
+      "Asset Management",
+      "Zakat",
+      "Backend"
+    ],
     "stars": 0
   }
 ]
