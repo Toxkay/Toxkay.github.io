@@ -88,7 +88,7 @@ async function loadProjects() {
   if (!grid || grid.dataset.loaded) return;
 
   try {
-    const projects = await fetchJSON('data/projects.json');
+    const projects = await fetchJSON('data/projects.json?v=3');
     grid.dataset.loaded = 'true';
     grid.innerHTML = projects.map(renderProjectCard).join('');
   } catch (e) {
@@ -97,8 +97,9 @@ async function loadProjects() {
 }
 
 function renderProjectCard(p) {
+  const primaryLang = p.language ? p.language.toLowerCase().split(/[\s,]+/)[0] : '';
   const langDot = p.language
-    ? `<span class="lang-dot lang-${p.language.toLowerCase().replace(' ', '-')}"></span>${p.language}`
+    ? `<span class="lang-dot lang-${primaryLang}"></span>${p.language}`
     : '';
 
   const tags = (p.tags || []).map((t) => `<span class="tag tag-cyan">${t}</span>`).join('');
