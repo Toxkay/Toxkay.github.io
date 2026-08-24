@@ -71,22 +71,19 @@ function render() {
 /* ════════════════════════════════════════════════════════════════
    FETCH HELPERS
    ════════════════════════════════════════════════════════════════ */
-async function fetchJSON(url) {
-  if (cache[url]) return cache[url];
+async function fetchJSON(baseUrl) {
+  // Append cache buster timestamp to prevent stale local cache
+  const url = `${baseUrl}${baseUrl.includes('?') ? '&' : '?'}t=${Date.now()}`;
   const res = await fetch(url);
-  if (!res.ok) throw new Error(`HTTP ${res.status} for ${url}`);
-  const data = await res.json();
-  cache[url] = data;
-  return data;
+  if (!res.ok) throw new Error(`HTTP ${res.status} for ${baseUrl}`);
+  return await res.json();
 }
 
-async function fetchText(url) {
-  if (cache[url]) return cache[url];
+async function fetchText(baseUrl) {
+  const url = `${baseUrl}${baseUrl.includes('?') ? '&' : '?'}t=${Date.now()}`;
   const res = await fetch(url);
-  if (!res.ok) throw new Error(`HTTP ${res.status} for ${url}`);
-  const text = await res.text();
-  cache[url] = text;
-  return text;
+  if (!res.ok) throw new Error(`HTTP ${res.status} for ${baseUrl}`);
+  return await res.text();
 }
 
 /* ════════════════════════════════════════════════════════════════
@@ -97,53 +94,51 @@ async function loadArchive() {
   if (!container) return;
 
   try {
-    if (!allArchiveItems.length) {
-      const [projects, writeups, certs] = await Promise.all([
-        fetchJSON('data/projects.json?v=4').catch(() => []),
-        fetchJSON('data/writeups.json?v=4').catch(() => []),
-        fetchJSON('data/certs.json?v=4').catch(() => [])
-      ]);
+    const [projects, writeups, certs] = await Promise.all([
+      fetchJSON('data/projects.json').catch(() => []),
+      fetchJSON('data/writeups.json').catch(() => []),
+      fetchJSON('data/certs.json').catch(() => [])
+    ]);
 
-      const normalizedProjects = projects.map(p => ({
-        type: 'Project',
-        title: p.name,
-        summary: p.description,
-        url: p.url,
-        year: p.year || '2025',
-        date: p.date || `${p.year || '2025'}-01-01`,
-        tags: p.tags || ['Projects'],
-        icon: p.icon || '⚙'
-      }));
+    const normalizedProjects = projects.map(p => ({
+      type: 'Project',
+      title: p.name,
+      summary: p.description,
+      url: p.url,
+      year: p.year || '2025',
+      date: p.date || `${p.year || '2025'}-01-01`,
+      tags: p.tags || ['Projects'],
+      icon: p.icon || '⚙'
+    }));
 
-      const normalizedWriteups = writeups.map(w => ({
-        type: 'Writeup',
-        title: w.title,
-        summary: w.summary,
-        slug: w.slug,
-        url: w.url,
-        year: w.year || '2026',
-        date: w.date || `${w.year || '2026'}-01-01`,
-        tags: w.tags || ['Writeups'],
-        platform: w.platform,
-        readTime: w.readTime,
-        icon: '📝'
-      }));
+    const normalizedWriteups = writeups.map(w => ({
+      type: 'Writeup',
+      title: w.title,
+      summary: w.summary,
+      slug: w.slug,
+      url: w.url,
+      year: w.year || '2026',
+      date: w.date || `${w.year || '2026'}-01-01`,
+      tags: w.tags || ['Writeups'],
+      platform: w.platform,
+      readTime: w.readTime,
+      icon: '📝'
+    }));
 
-      const normalizedCerts = certs.map(c => ({
-        type: 'Cert',
-        title: c.title,
-        summary: c.summary,
-        issuer: c.issuer,
-        year: c.year || '2026',
-        date: c.date || `${c.year || '2026'}-01-01`,
-        tags: c.tags || ['Certs'],
-        icon: '🛡️'
-      }));
+    const normalizedCerts = certs.map(c => ({
+      type: 'Cert',
+      title: c.title,
+      summary: c.summary,
+      issuer: c.issuer,
+      year: c.year || '2026',
+      date: c.date || `${c.year || '2026'}-01-01`,
+      tags: c.tags || ['Certs'],
+      icon: '🛡️'
+    }));
 
-      allArchiveItems = [...normalizedWriteups, ...normalizedProjects, ...normalizedCerts].sort(
-        (a, b) => new Date(b.date) - new Date(a.date)
-      );
-    }
+    allArchiveItems = [...normalizedWriteups, ...normalizedProjects, ...normalizedCerts].sort(
+      (a, b) => new Date(b.date) - new Date(a.date)
+    );
 
     setupArchiveFilters();
     renderArchiveTimeline(activeArchiveTag);
@@ -244,11 +239,10 @@ function renderTimelineItem(item) {
    ════════════════════════════════════════════════════════════════ */
 async function loadProjects() {
   const grid = $('#projects-grid');
-  if (!grid || grid.dataset.loaded) return;
+  if (!grid) return;
 
   try {
-    const projects = await fetchJSON('data/projects.json?v=4');
-    grid.dataset.loaded = 'true';
+    const projects = await fetchJSON('data/projects.json');
     grid.innerHTML = projects.map(renderProjectCard).join('');
   } catch (e) {
     grid.innerHTML = errorState('projects', e);
@@ -308,12 +302,11 @@ function showWriteupsViewer() {
 
 async function loadWriteupsIndex() {
   const list = $('#writeups-list');
-  if (!list || list.dataset.loaded) return;
+  if (!list) return;
 
   try {
-    const writeups = await fetchJSON('data/writeups.json?v=4');
+    const writeups = await fetchJSON('data/writeups.json');
     allWriteups = writeups;
-    list.dataset.loaded = 'true';
     renderWriteupsList(allWriteups);
     setupWriteupsSearch();
   } catch (e) {
