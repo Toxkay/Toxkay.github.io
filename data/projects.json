@@ -5,11 +5,14 @@
     "url": "https://github.com/Toxkay/reconw-orchestrator",
     "language": "Python, Jinja2",
     "icon": "🔍",
+    "year": "2026",
+    "date": "2026-06-15",
     "tags": [
+      "Projects",
       "Security",
       "Reconnaissance",
       "Automation",
-      "Penetration Testing"
+      "Tools"
     ],
     "stars": 2
   },
@@ -19,7 +22,10 @@
     "url": "https://github.com/Toxkay/Summer-Intern-Final-Project-NETSEC",
     "language": "Network Security",
     "icon": "🛡️",
+    "year": "2025",
+    "date": "2025-08-30",
     "tags": [
+      "Projects",
       "Security",
       "Networking",
       "Cisco",
@@ -33,7 +39,10 @@
     "url": "https://github.com/Toxkay/Vole-Machine",
     "language": "C++",
     "icon": "💻",
+    "year": "2025",
+    "date": "2025-04-10",
     "tags": [
+      "Projects",
       "Systems",
       "Virtual Machine",
       "Architecture",
@@ -47,11 +56,13 @@
     "url": "https://github.com/Toxkay/CS341-A3-CPU-Scheduler",
     "language": "Java",
     "icon": "💻",
+    "year": "2025",
+    "date": "2025-03-01",
     "tags": [
+      "Projects",
       "Operating Systems",
       "Scheduling",
-      "Simulation",
-      "Algorithms"
+      "Simulation"
     ],
     "stars": 0
   },
@@ -61,11 +72,13 @@
     "url": "https://github.com/Toxkay/CS341-A1-Command-Line-Interpreter",
     "language": "Java",
     "icon": "🟢",
+    "year": "2025",
+    "date": "2025-01-20",
     "tags": [
+      "Projects",
       "Systems Programming",
       "Shell",
-      "POSIX",
-      "Processes"
+      "POSIX"
     ],
     "stars": 0
   },
@@ -75,10 +88,12 @@
     "url": "https://github.com/Toxkay/CS251-Asset-Management-Zakat-Calculation-System",
     "language": "Full Stack",
     "icon": "🚀",
+    "year": "2024",
+    "date": "2024-11-12",
     "tags": [
+      "Projects",
       "Finance",
       "Asset Management",
-      "Zakat",
       "Backend"
     ],
     "stars": 0

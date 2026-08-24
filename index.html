@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description"
-    content="Toxkay – Offensive Security Engineer. Portfolio, projects, writeups and security notes." />
+    content="Toxkay – Offensive Security Engineer. Portfolio, timeline archive, projects, writeups and research." />
   <title>Toxkay | Offensive Security Engineer</title>
   <link rel="canonical" href="https://toxkay.github.io/" />
   <meta property="og:site_name" content="Toxkay" />
@@ -13,7 +13,7 @@
   <meta property="og:url" content="https://toxkay.github.io/" />
   <meta property="og:title" content="Toxkay | Offensive Security Engineer" />
   <meta property="og:description"
-    content="Portfolio, projects, writeups and security notes from an offensive security engineer." />
+    content="Portfolio, timeline archive, projects, writeups and research from an offensive security engineer." />
   <meta property="og:image" content="https://toxkay.github.io/assets/images/social-preview-linkedin-square.jpg" />
   <meta property="og:image:secure_url"
     content="https://toxkay.github.io/assets/images/social-preview-linkedin-square.jpg" />
@@ -25,7 +25,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Toxkay | Offensive Security Engineer" />
   <meta name="twitter:description"
-    content="Portfolio, projects, writeups and security notes from an offensive security engineer." />
+    content="Portfolio, timeline archive, projects, writeups and research from an offensive security engineer." />
   <meta name="twitter:image" content="https://toxkay.github.io/assets/images/social-preview-linkedin-square.jpg" />
 
   <!-- Fonts -->
@@ -35,7 +35,7 @@
     href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
     rel="stylesheet" />
 
-  <!-- Highlight.js (syntax highlighting) — served locally for offline/CDN-free use -->
+  <!-- Highlight.js (syntax highlighting) -->
   <link rel="stylesheet" href="assets/vendor/github-dark.min.css" />
 
   <!-- Site styles -->
@@ -58,9 +58,9 @@
 
       <ul class="nav-links" id="navLinks" role="list">
         <li><a href="#about" class="nav-link" data-section="about">About</a></li>
+        <li><a href="#archive" class="nav-link" data-section="archive">Archive</a></li>
         <li><a href="#projects" class="nav-link" data-section="projects">Projects</a></li>
         <li><a href="#writeups" class="nav-link" data-section="writeups">Writeups</a></li>
-        <li><a href="#notes" class="nav-link" data-section="notes">Notes</a></li>
         <li><a href="#cv" class="nav-link" data-section="cv">CV</a></li>
       </ul>
     </div>
@@ -69,7 +69,7 @@
   <!-- ═══════════════════════════ MAIN ═══════════════════════════ -->
   <main id="app">
 
-    <!-- ─── ABOUT ─── -->
+    <!-- ─── ABOUT / HERO ─── -->
     <section id="section-about" class="page-section" aria-label="About">
       <div class="container">
         <div class="hero">
@@ -78,22 +78,21 @@
               <span class="dot dot-red"></span>
               <span class="dot dot-yellow"></span>
               <span class="dot dot-green"></span>
-              <span class="terminal-title">toxkay@kali:~</span>
+              <span class="terminal-title">toxkay@kali:~ (interactive shell)</span>
             </div>
-            <div class="terminal-body">
+            <div class="terminal-body" id="termBody">
               <p class="term-line"><span class="term-prompt">$ </span><span class="term-cmd">whoami</span></p>
-              <p class="term-output">toxkay</p>
-              <p class="term-line"><span class="term-prompt">$ </span><span class="term-cmd">cat about.txt</span></p>
-              <p class="term-output">
-                Offensive Security Engineer · Red Teamer · Bug Hunter<br />
-                Passionate about breaking things to make them stronger.
-              </p>
+              <p class="term-output">toxkay — Offensive Security Engineer</p>
               <p class="term-line"><span class="term-prompt">$ </span><span class="term-cmd">cat focus.txt</span></p>
               <p class="term-output">
                 Web Application Pentesting · Active Directory Attacks<br />
-                Network Penetration Testing · CTF Competitions<br />
+                Network Penetration Testing · CTF Competitions
               </p>
-              <p class="term-line"><span class="term-prompt">$ </span><span class="typing-cursor">▌</span></p>
+              <div id="termHistory"></div>
+              <form id="termForm" class="term-input-line" autocomplete="off">
+                <span class="term-prompt">$ </span>
+                <input type="text" id="termInput" class="term-input" placeholder="type 'help', 'archive', 'projects', 'writeups'..." aria-label="Terminal input" spellcheck="false" />
+              </form>
             </div>
           </div>
 
@@ -101,13 +100,24 @@
             <div class="hero-badge">Offensive Security Engineer</div>
             <h1 class="hero-name">Toxkay</h1>
             <p class="hero-tagline">
-              Breaking systems. Building knowledge. Sharing both.
+              Breaking systems. Building knowledge. Sharing research.
             </p>
             <p class="hero-bio">
-              I'm an Offensive Security Engineer focused on red teaming, penetration testing,
-              , CTFS and bug hunting. I document my journey through writeups, cheatsheets,
-              and open-source tooling—everything I learn gets published here.
+              I'm an Offensive Security Engineer focused on red teaming, web penetration testing,
+              Active Directory exploitation, and CTF competitions. I document my security journey
+              through writeups, tools, and a yearly research archive.
             </p>
+
+            <div class="hero-cta-btns">
+              <a href="#archive" class="btn btn-primary">
+                <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16" aria-hidden="true"><path d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z"/></svg>
+                Explore Archive
+              </a>
+              <a href="#writeups" class="btn btn-outline">
+                <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16" aria-hidden="true"><path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/><path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h6a1 1 0 100-2H7zm0 4a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd"/></svg>
+                Read Writeups
+              </a>
+            </div>
 
             <div class="skills-grid">
               <div class="skill-group">
@@ -129,10 +139,11 @@
                 </div>
               </div>
               <div class="skill-group">
-                <h3 class="skill-group-title">// Certs &amp; CTFs</h3>
+                <h3 class="skill-group-title">// Certs &amp; Platforms</h3>
                 <div class="skill-tags">
                   <span class="tag tag-purple">HackTheBox</span>
                   <span class="tag tag-purple">TryHackMe</span>
+                  <span class="tag tag-purple">CPTS</span>
                 </div>
               </div>
             </div>
@@ -176,13 +187,44 @@
       </div>
     </section>
 
+    <!-- ─── ARCHIVE ─── -->
+    <section id="section-archive" class="page-section hidden" aria-label="Timeline Archive">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-prefix">// </span>
+          <h2 class="section-title">Timeline Archive</h2>
+          <p class="section-sub">Chronological log of projects, writeups, certifications, and CTF milestones.</p>
+        </div>
+
+        <!-- Tag Filter Pills -->
+        <div class="archive-filter-bar" id="archiveFilters">
+          <button class="filter-pill active" data-tag="All">All</button>
+          <button class="filter-pill" data-tag="Projects">Projects</button>
+          <button class="filter-pill" data-tag="Writeups">Writeups</button>
+          <button class="filter-pill" data-tag="HTB">HTB</button>
+          <button class="filter-pill" data-tag="THM">THM</button>
+          <button class="filter-pill" data-tag="Certs">Certs</button>
+          <button class="filter-pill" data-tag="Web">Web</button>
+          <button class="filter-pill" data-tag="Active Directory">Active Directory</button>
+          <button class="filter-pill" data-tag="Tools">Tools</button>
+        </div>
+
+        <!-- Timeline -->
+        <div id="archive-timeline" class="archive-timeline">
+          <div class="loading-state">
+            <span class="term-prompt">$ </span>loading timeline archive<span class="typing-cursor">▌</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ─── PROJECTS ─── -->
     <section id="section-projects" class="page-section hidden" aria-label="Projects">
       <div class="container">
         <div class="section-header">
           <span class="section-prefix">// </span>
           <h2 class="section-title">Projects</h2>
-          <p class="section-sub">Open-source tools, exploits, and research.</p>
+          <p class="section-sub">Open-source tools, exploits, and security infrastructure.</p>
         </div>
         <div id="projects-grid" class="card-grid">
           <div class="loading-state">
@@ -195,47 +237,32 @@
     <!-- ─── WRITEUPS ─── -->
     <section id="section-writeups" class="page-section hidden" aria-label="Writeups">
       <div class="container">
-        <div class="section-header">
-          <span class="section-prefix">// </span>
-          <h2 class="section-title">Writeups</h2>
-          <p class="section-sub">CTF solutions, bug reports &amp; research published on Medium.</p>
-        </div>
-        <div id="writeups-list" class="writeups-list">
-          <div class="loading-state">
-            <span class="term-prompt">$ </span>loading writeups<span class="typing-cursor">▌</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ─── NOTES ─── -->
-    <section id="section-notes" class="page-section hidden" aria-label="Notes and Cheatsheets">
-      <div class="container">
-        <!-- Notes index view -->
-        <div id="notes-index">
+        <!-- Index view -->
+        <div id="writeups-index">
           <div class="section-header">
             <span class="section-prefix">// </span>
-            <h2 class="section-title">Notes &amp; Cheatsheets</h2>
-            <p class="section-sub">Field-tested cheatsheets and research notes. Click any entry to read.</p>
+            <h2 class="section-title">Writeups</h2>
+            <p class="section-sub">CTF solutions, bug reports &amp; research. Click any writeup to read in-site.</p>
           </div>
-          <div class="notes-search-wrap">
+
+          <div class="writeups-search-wrap">
             <span class="search-icon">⌕</span>
-            <input type="search" id="notesSearch" class="notes-search" placeholder="Search notes..."
-              aria-label="Search notes" />
+            <input type="search" id="writeupsSearch" class="writeups-search" placeholder="Search writeups by title, tag, platform..." aria-label="Search writeups" />
           </div>
-          <div id="notes-list" class="notes-list">
+
+          <div id="writeups-list" class="writeups-list">
             <div class="loading-state">
-              <span class="term-prompt">$ </span>loading notes<span class="typing-cursor">▌</span>
+              <span class="term-prompt">$ </span>loading writeups<span class="typing-cursor">▌</span>
             </div>
           </div>
         </div>
 
-        <!-- Single note view -->
-        <div id="note-viewer" class="hidden">
-          <button id="notes-back" class="btn btn-ghost back-btn">
-            <span aria-hidden="true">←</span> Back to Notes
+        <!-- Single Writeup Reader view -->
+        <div id="writeup-viewer" class="hidden">
+          <button id="writeups-back" class="btn btn-ghost back-btn">
+            <span aria-hidden="true">←</span> Back to Writeups
           </button>
-          <article id="note-content" class="note-article markdown-body"></article>
+          <article id="writeup-content" class="writeup-article markdown-body"></article>
         </div>
       </div>
     </section>
@@ -246,8 +273,9 @@
         <div class="section-header">
           <span class="section-prefix">// </span>
           <h2 class="section-title">Curriculum Vitae</h2>
-          <p class="section-sub">Download my CV below.</p>
+          <p class="section-sub">Download my full resume and credentials below.</p>
         </div>
+
         <div class="cv-card">
           <div class="cv-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -322,7 +350,7 @@
   <!-- Vendor libraries (served locally) -->
   <script src="assets/vendor/highlight.min.js"></script>
   <script src="assets/vendor/marked.min.js"></script>
-  <script src="assets/js/app.js?v=3"></script>
+  <script src="assets/js/app.js?v=4"></script>
 </body>
 
 </html>

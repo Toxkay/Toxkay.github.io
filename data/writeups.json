@@ -1,19 +1,35 @@
 [
   {
+    "slug": "WingData",
+    "title": "HTB — WingData Writeup",
+    "url": "#writeups/WingData",
+    "date": "2026-08-24",
+    "year": "2026",
+    "platform": "HackTheBox",
+    "readTime": "5 min read",
+    "summary": "Full walkthrough of HTB WingData exploiting Wing FTP Server unauthenticated RCE (CVE-2025-47812) and local privilege escalation (CVE-2025-4517).",
+    "tags": ["Writeups", "Web", "HTB", "RCE", "PrivEsc"]
+  },
+  {
+    "slug": "skills-assessment-sql-injection",
     "title": "Skills Assessment — SQL Injection Fundamentals Writeup",
     "url": "https://medium.com/@karenfady5576/skills-assessment-sql-injection-fundamentals-writeup-782e856ecbc4",
-    "date": "2026-08-1",
-    "platform": "Medium",
+    "date": "2026-08-01",
+    "year": "2026",
+    "platform": "HTB / CPTS",
     "readTime": "4 min read",
-    "summary": "I finished a module from the CPTS certificate called SQL Injection Fundamentals and it has a skills assessment which was very amusing, this is a writeup for it to help you solve it (The new version of the skills assessment)",
-    "tags": ["Web", "HTB", "CPTS" , "SQL Injection"]
-  }
-  ,{
+    "summary": "Full walkthrough for the HTB Certified Penetration Tester (CPTS) SQL Injection Fundamentals skills assessment module, detailing union-based extraction and error-based techniques.",
+    "tags": ["Writeups", "Web", "HTB", "CPTS", "SQL Injection"]
+  },
+  {
+    "slug": "htb-flag-command",
     "title": "HTB — Flag Command (Web)",
     "url": "https://medium.com/@karenfady5576/htb-flag-command-web-c77af5a8558c",
     "date": "2026-04-17",
-    "platform": "Medium",
+    "year": "2026",
+    "platform": "HackTheBox",
     "readTime": "2 min read",
-    "tags": ["Web", "HTB", "Bug Bounty"]
+    "summary": "Detailed writeup for the HackTheBox 'Flag Command' web challenge analyzing client-side command endpoints and secret extraction.",
+    "tags": ["Writeups", "Web", "HTB", "Bug Bounty"]
   }
 ]
