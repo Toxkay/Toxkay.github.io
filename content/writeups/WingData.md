@@ -7,7 +7,7 @@
 
 ---
 
-![WingData Banner](assets/images/WingData-1.png)
+![WingData Banner](assets/images/WingData-6.png)
 
 Hello security researchers! Welcome back to another walkthrough. In this writeup, we will tackle **WingData** from HackTheBox, demonstrating unauthenticated RCE via Wing FTP Server and local privilege escalation to root.
 
