@@ -330,18 +330,23 @@ function renderWriteupsList(writeups) {
       : `href="${w.url}" target="_blank" rel="noopener"`;
 
     return `
-      <div class="writeup-card" ${clickHandler} role="button" tabindex="0">
-        <div class="writeup-header">
-          <div class="writeup-title">${w.title}</div>
-          <span class="writeup-read-btn">Read Article →</span>
+      <div class="writeup-item-outer">
+        <div class="writeup-date-tab" aria-label="Published date">
+          <span class="date-icon">📅</span>
+          <span class="date-text">${w.date}</span>
         </div>
-        <div class="writeup-meta">
-          <span>📅 ${w.date}</span>
-          ${w.platform ? `<span>· ${w.platform}</span>` : ''}
-          ${w.readTime ? `<span>· ${w.readTime}</span>` : ''}
+        <div class="writeup-card" ${clickHandler} role="button" tabindex="0">
+          <div class="writeup-header">
+            <div class="writeup-title">${w.title}</div>
+            <span class="writeup-read-btn">Read Article <span class="read-arrow">→</span></span>
+          </div>
+          <div class="writeup-meta">
+            ${w.platform ? `<span class="meta-item"><span class="meta-icon">🎯</span> ${w.platform}</span>` : ''}
+            ${w.readTime ? `<span class="meta-item"><span class="meta-icon">⏱️</span> ${w.readTime}</span>` : ''}
+          </div>
+          <div class="writeup-summary">${w.summary}</div>
+          <div class="writeup-tags">${tags}</div>
         </div>
-        <div class="writeup-summary">${w.summary}</div>
-        <div class="writeup-tags">${tags}</div>
       </div>`;
   }).join('');
 }
@@ -373,10 +378,18 @@ async function showWriteupReader(slug) {
   const viewer = $('#writeup-content');
   if (!viewer) return;
 
+  if (!allWriteups || !allWriteups.length) {
+    try {
+      allWriteups = await fetchJSON('data/writeups.json');
+    } catch (_) {}
+  }
+  const writeupInfo = (allWriteups || []).find((item) => item.slug === slug);
+
   try {
     viewer.innerHTML = `<div class="loading-state"><span class="term-prompt">$ </span>loading article content<span class="typing-cursor">▌</span></div>`;
     const md = await fetchText(`content/writeups/${slug}.md`);
 
+    let parsedHtml = '';
     // Configure marked
     if (typeof marked !== 'undefined') {
       const renderer = new marked.Renderer();
@@ -385,9 +398,26 @@ async function showWriteupReader(slug) {
         gfm: true,
         breaks: true,
       });
-      viewer.innerHTML = marked.parse(md);
+      parsedHtml = marked.parse(md);
     } else {
-      viewer.innerHTML = `<pre>${md}</pre>`;
+      parsedHtml = `<pre>${md}</pre>`;
+    }
+
+    if (writeupInfo) {
+      const headerHtml = `
+        <div class="article-outer-header">
+          <div class="writeup-date-tab" aria-label="Published date">
+            <span class="date-icon">📅</span>
+            <span class="date-text">${writeupInfo.date}</span>
+          </div>
+          <div class="article-meta-badges">
+            ${writeupInfo.platform ? `<span class="meta-item"><span class="meta-icon">🎯</span> ${writeupInfo.platform}</span>` : ''}
+            ${writeupInfo.readTime ? `<span class="meta-item"><span class="meta-icon">⏱️</span> ${writeupInfo.readTime}</span>` : ''}
+          </div>
+        </div>`;
+      viewer.innerHTML = headerHtml + parsedHtml;
+    } else {
+      viewer.innerHTML = parsedHtml;
     }
 
     // Syntax highlighting
