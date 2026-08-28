@@ -39,7 +39,7 @@
   <link rel="stylesheet" href="assets/vendor/github-dark.min.css" />
 
   <!-- Site styles -->
-  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/style.css?v=8" />
 </head>
 
 <body>
@@ -273,7 +273,22 @@
           <button id="writeups-back" class="btn btn-ghost back-btn">
             <span aria-hidden="true">←</span> Back to Writeups
           </button>
-          <article id="writeup-content" class="writeup-article markdown-body"></article>
+          <div class="writeup-layout">
+            <article id="writeup-content" class="writeup-article markdown-body"></article>
+            <aside id="writeup-toc" class="writeup-toc">
+              <div class="toc-card">
+                <div class="toc-title" id="toc-toggle" title="Click to pin/unpin navigation">
+                  <span class="toc-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h12M4 18h8" />
+                    </svg>
+                  </span>
+                  <span class="toc-heading-text">On This Page</span>
+                </div>
+                <nav id="toc-nav" class="toc-nav"></nav>
+              </div>
+            </aside>
+          </div>
         </div>
       </div>
     </section>
@@ -361,7 +376,7 @@
   <!-- Vendor libraries (served locally) -->
   <script src="assets/vendor/highlight.min.js"></script>
   <script src="assets/vendor/marked.min.js"></script>
-  <script src="assets/js/app.js?v=4"></script>
+  <script src="assets/js/app.js?v=8"></script>
 </body>
 
 </html>

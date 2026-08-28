@@ -400,12 +400,121 @@ async function showWriteupReader(slug) {
     // Set title
     const h1 = viewer.querySelector('h1');
     if (h1) document.title = `${h1.textContent} · Toxkay Writeups`;
+
+    // Generate Dynamic Table of Contents (Side Navigation)
+    generateTableOfContents(viewer);
   } catch (e) {
     viewer.innerHTML = `
       <div class="loading-state" style="color:var(--red)">
         Failed to load writeup article: ${e.message}
       </div>`;
+    $('#writeup-toc')?.classList.add('hidden');
   }
+}
+
+let tocObserver = null;
+
+function generateTableOfContents(articleEl) {
+  const tocNav = $('#toc-nav');
+  const tocSidebar = $('#writeup-toc');
+  if (!tocNav || !tocSidebar) return;
+
+  tocNav.innerHTML = '';
+
+  // Query all headings inside writeup (excluding the top article title H1)
+  const allHeadings = [...articleEl.querySelectorAll('h1, h2, h3, h4')];
+  const headings = allHeadings.filter((h, idx) => {
+    if (idx === 0 && h.tagName.toLowerCase() === 'h1') return false;
+    return true;
+  });
+
+  if (!headings.length) {
+    tocSidebar.classList.add('hidden');
+    return;
+  }
+
+  tocSidebar.classList.remove('hidden', 'pinned', 'force-closed');
+
+  // Toggle pinned state when icon / header title is clicked
+  const tocToggle = $('#toc-toggle');
+  if (tocToggle && !tocToggle.dataset.bound) {
+    tocToggle.dataset.bound = 'true';
+    tocToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      tocSidebar.classList.remove('force-closed');
+      tocSidebar.classList.toggle('pinned');
+    });
+  }
+
+  // Remove force-closed state when mouse leaves sidebar
+  if (!tocSidebar.dataset.bound) {
+    tocSidebar.dataset.bound = 'true';
+    tocSidebar.addEventListener('mouseleave', () => {
+      tocSidebar.classList.remove('force-closed');
+    });
+  }
+
+  const headingItems = [];
+
+  headings.forEach((h, idx) => {
+    if (!h.id) {
+      const slugText = h.textContent
+        .toLowerCase()
+        .replace(/[^\w\s-]/g, '')
+        .trim()
+        .replace(/\s+/g, '-');
+      h.id = slugText || `sec-${idx + 1}`;
+    }
+
+    const isH3 = h.tagName.toLowerCase() === 'h3';
+    const a = document.createElement('a');
+    a.href = `#${h.id}`;
+    a.className = `toc-link ${isH3 ? 'h3' : 'h2'}`;
+    a.textContent = h.textContent.trim();
+    a.title = h.textContent.trim();
+
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
+      
+      // Auto-collapse sidebar upon clicking a section title
+      tocSidebar.classList.remove('pinned');
+      tocSidebar.classList.add('force-closed');
+      if (document.activeElement) document.activeElement.blur();
+
+      const target = document.getElementById(h.id);
+      if (target) {
+        const navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 64;
+        const targetTop = target.getBoundingClientRect().top + window.pageYOffset - navH - 24;
+        window.scrollTo({ top: targetTop, behavior: 'smooth' });
+      }
+    });
+
+    tocNav.appendChild(a);
+    headingItems.push({ heading: h, link: a });
+  });
+
+  // Setup ScrollSpy
+  if (tocObserver) tocObserver.disconnect();
+
+  const navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 64;
+  tocObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        headingItems.forEach(({ heading, link }) => {
+          if (heading === entry.target) {
+            link.classList.add('active');
+          } else {
+            link.classList.remove('active');
+          }
+        });
+      }
+    });
+  }, {
+    rootMargin: `-${navH + 10}px 0px -65% 0px`,
+    threshold: 0
+  });
+
+  headings.forEach((h) => tocObserver.observe(h));
 }
 
 /* ── Back button in Writeups Viewer ─────────────────────────── */
