@@ -1,5 +1,24 @@
 [
   {
+    "slug": "Enigma",
+    "title": "HTB — Enigma Writeup",
+    "url": "#writeups/Enigma",
+    "date": "2026-10-20",
+    "year": "2026",
+    "platform": "HackTheBox",
+    "readTime": "7 min read",
+    "summary": "Full walkthrough of HTB Enigma chaining NFS credential leakage, IMAP password reuse, OpenSTAManager RCE (GHSA-25fp-8w8p-mx36), bcrypt cracking, and an OliveTin root command injection.",
+    "tags": [
+      "Writeups",
+      "Linux",
+      "HTB",
+      "RCE",
+      "PrivEsc",
+      "Command Injection",
+      "NFS"
+    ]
+  },
+  {
     "slug": "WingData",
     "title": "HTB — WingData Writeup",
     "url": "#writeups/WingData",
