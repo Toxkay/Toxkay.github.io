@@ -11,7 +11,7 @@
 
 ![Enigma Banner](assets/images/enigma-1.jpeg)
 
-Welcome to the **Enigma** walkthrough on HackTheBox! **Enigma** is a multi-service Linux machine ranked as **Hard** difficulty that presents a realistic, interconnected attack chain. Compromising the box involves chaining an exposed NFS wildcard share, credential harvesting via IMAP email access, exploiting a ZIP path traversal and command injection vulnerability in OpenSTAManager (`CVE-GHSA-25fp-8w8p-mx36`) to obtain a `www-data` foothold, pivoting to user `haris` through a cracked MySQL bcrypt hash, and ultimately escalating to `root` via an unsanitized template injection in an internal `OliveTin` management daemon.
+Welcome to the **Enigma** walkthrough on HackTheBox! **Enigma** is a multi-service Linux machine ranked as **Easy** difficulty that presents a realistic, interconnected attack chain. Compromising the box involves chaining an exposed NFS wildcard share, credential harvesting via IMAP email access, exploiting a ZIP path traversal and command injection vulnerability in OpenSTAManager (`CVE-GHSA-25fp-8w8p-mx36`) to obtain a `www-data` foothold, pivoting to user `haris` through a cracked MySQL bcrypt hash, and ultimately escalating to `root` via an unsanitized template injection in an internal `OliveTin` management daemon.
 
 ---
 
